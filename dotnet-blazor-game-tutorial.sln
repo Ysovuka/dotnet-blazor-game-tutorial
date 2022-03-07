@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Client", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Shared", "src\SimpleRPG.Game\Shared\SimpleRPG.Game.Shared.csproj", "{2D344B95-823D-4854-9E96-B51FC13EC221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Tests", "src\SimpleRPG.Game.Tests\SimpleRPG.Game.Tests.csproj", "{35E80287-FACF-459C-8331-10D78A3A3EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Tests", "src\SimpleRPG.Game.Tests\SimpleRPG.Game.Tests.csproj", "{35E80287-FACF-459C-8331-10D78A3A3EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Engine", "src\SimpleRPG.Game.Engine\SimpleRPG.Game.Engine.csproj", "{1087E2F1-967D-4D71-ADF7-6B1184A65A7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Engine.Tests", "src\SimpleRPG.Game.Engine.Tests\SimpleRPG.Game.Engine.Tests.csproj", "{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1087E2F1-967D-4D71-ADF7-6B1184A65A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1087E2F1-967D-4D71-ADF7-6B1184A65A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1087E2F1-967D-4D71-ADF7-6B1184A65A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1087E2F1-967D-4D71-ADF7-6B1184A65A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +56,8 @@ Global
 		{88EC2BE6-5892-4C7D-A244-1558DFB919CE} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 		{2D344B95-823D-4854-9E96-B51FC13EC221} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 		{35E80287-FACF-459C-8331-10D78A3A3EB6} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
+		{1087E2F1-967D-4D71-ADF7-6B1184A65A7E} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
+		{B87BD078-4C5F-4F9F-9EB4-C55E00AC1259} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38E4D385-DA16-4B02-86C3-3706630069EC}
