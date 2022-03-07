@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Client", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Shared", "src\SimpleRPG.Game\Shared\SimpleRPG.Game.Shared.csproj", "{2D344B95-823D-4854-9E96-B51FC13EC221}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Tests", "src\SimpleRPG.Game.Tests\SimpleRPG.Game.Tests.csproj", "{35E80287-FACF-459C-8331-10D78A3A3EB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{2D344B95-823D-4854-9E96-B51FC13EC221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D344B95-823D-4854-9E96-B51FC13EC221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D344B95-823D-4854-9E96-B51FC13EC221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E80287-FACF-459C-8331-10D78A3A3EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{42705E89-AD02-401C-AA13-E39F3CCD2B87} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 		{88EC2BE6-5892-4C7D-A244-1558DFB919CE} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 		{2D344B95-823D-4854-9E96-B51FC13EC221} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
+		{35E80287-FACF-459C-8331-10D78A3A3EB6} = {5644C875-1FE9-4443-AB32-8F60108BCC37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38E4D385-DA16-4B02-86C3-3706630069EC}
