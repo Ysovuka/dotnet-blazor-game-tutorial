@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5644C875-1FE9-4443-AB32-8F60108BCC37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Server", "src\SimpleRPG.Game\Server\SimpleRPG.Game.Server.csproj", "{42705E89-AD02-401C-AA13-E39F3CCD2B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Server", "src\SimpleRPG.Game\Server\SimpleRPG.Game.Server.csproj", "{42705E89-AD02-401C-AA13-E39F3CCD2B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Client", "src\SimpleRPG.Game\Client\SimpleRPG.Game.Client.csproj", "{88EC2BE6-5892-4C7D-A244-1558DFB919CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Client", "src\SimpleRPG.Game\Client\SimpleRPG.Game.Client.csproj", "{88EC2BE6-5892-4C7D-A244-1558DFB919CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRPG.Game.Shared", "src\SimpleRPG.Game\Shared\SimpleRPG.Game.Shared.csproj", "{2D344B95-823D-4854-9E96-B51FC13EC221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRPG.Game.Shared", "src\SimpleRPG.Game\Shared\SimpleRPG.Game.Shared.csproj", "{2D344B95-823D-4854-9E96-B51FC13EC221}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
