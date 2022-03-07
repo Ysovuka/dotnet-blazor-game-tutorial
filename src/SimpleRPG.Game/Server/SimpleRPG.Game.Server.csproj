@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SimpleRPG.Game.Engine\SimpleRPG.Game.Engine.csproj" />
     <ProjectReference Include="..\Client\SimpleRPG.Game.Client.csproj" />
     <ProjectReference Include="..\Shared\SimpleRPG.Game.Shared.csproj" />
   </ItemGroup>

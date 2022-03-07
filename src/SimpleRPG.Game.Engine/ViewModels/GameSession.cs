@@ -11,7 +11,15 @@ public class GameSession
         this.CurrentPlayer = new Player
         {
             Name = "DarthPedro",
-            Gold = 1000
+            CharacterClass = "Fighter",
+            HitPoints = 10,
+            Gold = 1000,
+            ExperiencePoints = 0,
+            Level = 1
         };
+    }
+    public void AddXP()
+    {
+        this.CurrentPlayer.ExperiencePoints += 10;
     }
 }
