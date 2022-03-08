@@ -4,7 +4,8 @@ namespace SimpleRPG.Game.Engine.ViewModels;
 
 public class GameSession : IGameSession
 {
-    public Player CurrentPlayer { get; set; }
+    public Player CurrentPlayer { get; private set; }
+    public Location CurrentLocation { get; private set; }
 
     public GameSession()
     {
@@ -16,6 +17,15 @@ public class GameSession : IGameSession
             Gold = 1000,
             ExperiencePoints = 0,
             Level = 1
+        };
+
+        this.CurrentLocation = new Location
+        {
+            Name = "Home",
+            XCoordinate = 0,
+            YCoordinate = 0,
+            Description = "This is your house.",
+            ImageName = "/images/locations/home.png"
         };
     }
     public void AddXP()

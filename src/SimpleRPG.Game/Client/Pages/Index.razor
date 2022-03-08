@@ -13,7 +13,14 @@
         <Button Color="Color.Secondary" Outline="true" Clicked="@ViewModel.AddXP">Add XP</Button>
     </Column>
     <Column ColumnSize="ColumnSize.Is9.OnWidescreen.Is12" Style="background-color: beige">
-        Game Data
+        <Row Margin="Margin.Is2.OnY">
+            <Column ColumnSize="ColumnSize.Is8.OnWidescreen.Is12">
+                Game Data
+            </Column>
+            <Column ColumnSize="ColumnSize.Is4.OnWidescreen.Is12">
+                <LocationComponent Location="@ViewModel.CurrentLocation" />
+            </Column>
+        </Row>
     </Column>
 </Row>
 <Row Style="height: 30vh">
