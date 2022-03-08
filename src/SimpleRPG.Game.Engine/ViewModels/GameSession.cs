@@ -6,6 +6,7 @@ namespace SimpleRPG.Game.Engine.ViewModels;
 public class GameSession : IGameSession
 {
     private readonly World _currentWorld;
+    private readonly int _maximumMessagesCount = 100;
     public Player CurrentPlayer { get; private set; }
     public Location CurrentLocation { get; private set; }
 
@@ -14,6 +15,14 @@ public class GameSession : IGameSession
     public bool HasMonster => CurrentMonster != null;
 
     public MovementUnit Movement { get; private set; }
+
+    public IList<DisplayMessage> Messages { get; } = new List<DisplayMessage>();
+
+    public GameSession(int maxMessageCount)
+        : this()
+    {
+        _maximumMessagesCount = maxMessageCount;
+    }
 
     public GameSession()
     {
@@ -42,6 +51,27 @@ public class GameSession : IGameSession
         GetMonsterAtCurrentLocation();
     }
 
-    private void GetMonsterAtCurrentLocation() =>
-            CurrentMonster = CurrentLocation.HasMonster() ? CurrentLocation.GetMonster() : null;
+    private void GetMonsterAtCurrentLocation()
+    {
+        CurrentMonster = CurrentLocation.HasMonster() ? CurrentLocation.GetMonster() : null;
+
+        if (CurrentMonster != null)
+        {
+            AddDisplayMessage("Monster Encountered:", $"You see a {CurrentMonster.Name} here!");
+        }
+    }
+
+    private void AddDisplayMessage(string title, string message) =>
+        AddDisplayMessage(title, new List<string> { message });
+
+    private void AddDisplayMessage(string title, IList<string> messages)
+    {
+        var message = new DisplayMessage(title, messages);
+        this.Messages.Insert(0, message);
+
+        if (Messages.Count > _maximumMessagesCount)
+        {
+            Messages.Remove(Messages.Last());
+        }
+    }
 }

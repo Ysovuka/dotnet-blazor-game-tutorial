@@ -12,6 +12,8 @@ public interface IGameSession
 
     MovementUnit Movement { get; }
 
+    IList<DisplayMessage> Messages { get; }
+
     void OnLocationChanged(Location newLocation);
 
 }

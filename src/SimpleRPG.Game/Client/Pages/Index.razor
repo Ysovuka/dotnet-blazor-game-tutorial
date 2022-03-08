@@ -13,7 +13,7 @@
     <Column ColumnSize="ColumnSize.Is9.OnWidescreen.Is12" Style="background-color: beige">
         <Row Margin="Margin.Is2.OnY">
             <Column ColumnSize="ColumnSize.Is8.OnWidescreen.Is12">
-                Game Data
+                <DisplayMessageListView Messages="@ViewModel.Messages" />
             </Column>
             <Column ColumnSize="ColumnSize.Is4.OnWidescreen.Is12">
                 <LocationComponent Location="@ViewModel.CurrentLocation" />
