@@ -13,4 +13,6 @@ public class Player
     public int Level { get; set; }
 
     public int Gold { get; set; }
+
+    public ICollection<GameItem> Inventory { get; } = new List<GameItem>();
 }

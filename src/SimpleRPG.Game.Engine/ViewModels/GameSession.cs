@@ -26,6 +26,8 @@ public class GameSession : IGameSession
         this._currentWorld = WorldFactory.CreateWorld();
         this.Movement = new MovementUnit(this._currentWorld);
         this.CurrentLocation = this.Movement.CurrentLocation;
+
+        CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
     }
 
     public void OnLocationChanged(Location newLocation) =>

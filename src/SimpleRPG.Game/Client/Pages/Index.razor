@@ -22,8 +22,9 @@
     </Column>
 </Row>
 <Row Style="height: 30vh">
-    <Column ColumnSize="ColumnSize.Is3.OnWidescreen.Is12" Style="background-color: burlywood">
-        Inventory/Quest
+    <Column ColumnSize="ColumnSize.Is3.OnWidescreen.Is12" Padding="Padding.Is2.OnY"
+            Style="background-color: burlywood">
+        <PlayerTabs Player="@ViewModel.CurrentPlayer" />
     </Column>
     <Column ColumnSize="ColumnSize.Is9.OnWidescreen.Is12" Style="background-color: lavender">
         <Row Margin="Margin.Is2.OnY">
