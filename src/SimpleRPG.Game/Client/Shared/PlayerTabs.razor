@@ -10,14 +10,16 @@
                        Style="background-color: white">
                     <TableHeader>
                         <TableRowCell>Name</TableRowCell>
+                        <TableRowCell>Qty</TableRowCell>
                         <TableRowCell>Price</TableRowCell>
                     </TableHeader>
                     <TableBody>
-                        @foreach (var item in Player.Inventory)
+                        @foreach (var groupedItem in Player.Inventory.GroupedItems)
                         {
                         <TableRow>
-                            <TableRowCell>@item.Name</TableRowCell>
-                            <TableRowCell>@item.Price</TableRowCell>
+                            <TableRowCell>@groupedItem.Item.Name</TableRowCell>
+                            <TableRowCell>@groupedItem.Quantity</TableRowCell>
+                            <TableRowCell>@groupedItem.Item.Price</TableRowCell>
                         </TableRow>
                         }
                     </TableBody>
