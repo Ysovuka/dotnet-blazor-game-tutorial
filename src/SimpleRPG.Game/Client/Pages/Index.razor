@@ -9,8 +9,6 @@
 <Row Style="height: 60vh">
     <Column ColumnSize="ColumnSize.Is3.OnWidescreen.Is12" Style="background-color: aquamarine">
         <PlayerComponent Player="@ViewModel.CurrentPlayer" />
-
-        <Button Color="Color.Secondary" Outline="true" Clicked="@ViewModel.AddXP">Add XP</Button>
     </Column>
     <Column ColumnSize="ColumnSize.Is9.OnWidescreen.Is12" Style="background-color: beige">
         <Row Margin="Margin.Is2.OnY">
@@ -28,7 +26,14 @@
         Inventory/Quest
     </Column>
     <Column ColumnSize="ColumnSize.Is9.OnWidescreen.Is12" Style="background-color: lavender">
-        Combat/Movement Controls
+        <Row Margin="Margin.Is2.OnY">
+            <Column ColumnSize="ColumnSize.Is8.OnWidescreen.Is12">
+                Combat Controls
+            </Column>
+            <Column ColumnSize="ColumnSize.Is4.OnWidescreen.Is12">
+                <MovementComponent Movement="@ViewModel.Movement" LocationChanged="@ViewModel.OnLocationChanged" />
+            </Column>
+        </Row>
     </Column>
 </Row>
  
