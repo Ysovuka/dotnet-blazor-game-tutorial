@@ -16,7 +16,7 @@ public class PlayerTests
         {
             Name = "Test",
             Level = 1,
-            HitPoints = 10
+            MaximumHitPoints = 10
         };
 
         // assert
@@ -24,7 +24,7 @@ public class PlayerTests
         Assert.Equal("Test", p.Name);
         Assert.Equal(string.Empty, p.CharacterClass);
         Assert.Equal(1, p.Level);
-        Assert.Equal(10, p.HitPoints);
+        Assert.Equal(10, p.MaximumHitPoints);
         Assert.Equal(0, p.ExperiencePoints);
         Assert.Equal(0, p.Gold);
     }
