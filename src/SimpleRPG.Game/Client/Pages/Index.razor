@@ -7,37 +7,7 @@
 </Row>
 <Row Style="height: 60vh">
     <Column ColumnSize="ColumnSize.Is3.OnWidescreen.Is12" Style="background-color: aquamarine">
-        <Table Borderless="true" Narrow="true">
-            <TableHeader>
-                <TableHeaderCell RowSpan="2">Player Data</TableHeaderCell>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                    <TableRowCell>Name:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.Name</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Class:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.CharacterClass</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Hit points:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.HitPoints</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Gold:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.Gold</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>XP:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.ExperiencePoints</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Level:</TableRowCell>
-                    <TableRowCell>@ViewModel.CurrentPlayer.Level</TableRowCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+        <PlayerComponent Player="@ViewModel.CurrentPlayer" />
 
         <Button Color="Color.Secondary" Outline="true" Clicked="@ViewModel.AddXP">Add XP</Button>
     </Column>
