@@ -17,6 +17,10 @@ public class Location
 
     public IList<MonsterEncounter> MonstersHere { get; set; } = new List<MonsterEncounter>();
 
+    public Trader? TraderHere { get; set; } = null;
+
+    public bool HasTrader => TraderHere != null;
+
     public void AddMonsterEncounter(int monsterId, int chanceOfEncountering)
     {
         if (MonstersHere.Any(m => m.MonsterId == monsterId))

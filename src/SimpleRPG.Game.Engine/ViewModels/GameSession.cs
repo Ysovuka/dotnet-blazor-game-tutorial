@@ -18,6 +18,8 @@ public class GameSession : IGameSession
 
     public bool HasMonster => CurrentMonster != null;
 
+    public Trader? CurrentTrader { get; private set; }
+
     public MovementUnit Movement { get; private set; }
 
     public IList<DisplayMessage> Messages { get; } = new List<DisplayMessage>();
@@ -51,15 +53,18 @@ public class GameSession : IGameSession
 
         if (!CurrentPlayer.Inventory.Weapons.Any())
         {
-            CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(1001));
+            CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(1001)!);
         }
     }
 
     public void OnLocationChanged(Location newLocation)
     {
+        _ = newLocation ?? throw new ArgumentNullException(nameof(newLocation));
+
         CurrentLocation = newLocation;
-        //Movement.UpdateLocation(CurrentLocation);
+        Movement.UpdateLocation(CurrentLocation);
         GetMonsterAtCurrentLocation();
+        CurrentTrader = CurrentLocation.TraderHere;
     }
 
     public void AttackCurrentMonster(Weapon? currentWeapon)
