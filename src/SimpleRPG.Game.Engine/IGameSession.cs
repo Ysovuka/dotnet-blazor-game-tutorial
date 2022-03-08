@@ -16,4 +16,6 @@ public interface IGameSession
 
     void OnLocationChanged(Location newLocation);
 
+    void AttackCurrentMonster(Weapon? currentWeapon);
+
 }
