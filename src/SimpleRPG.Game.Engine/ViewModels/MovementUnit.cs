@@ -24,6 +24,8 @@ namespace SimpleRPG.Game.Engine.ViewModels
 
         public EventCallback<Location> LocationChanged { get; set; }
 
+        public void UpdateLocation(Location location) => CurrentLocation = location;
+
         public bool CanMoveNorth =>
             this.world.HasLocationAt(this.CurrentLocation.XCoordinate, this.CurrentLocation.YCoordinate + 1);
 
