@@ -15,6 +15,11 @@ public class World
             throw new ArgumentOutOfRangeException("Coordinates", "Provided coordinates could not be found in game world.");
     }
 
+    public bool HasLocationAt(int xCoordinate, int yCoordinate)
+    {
+        return _locations.Any(p => p.XCoordinate == xCoordinate && p.YCoordinate == yCoordinate);
+    }
+
     public Location GetHomeLocation()
     {
         return LocationAt(0, -1);
