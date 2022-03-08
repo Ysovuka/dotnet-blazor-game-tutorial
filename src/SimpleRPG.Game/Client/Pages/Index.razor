@@ -1,5 +1,6 @@
 ﻿@page "/"
- 
+@inject IGameSession ViewModel 
+
 <Row Style="height: 5vh; min-height: 32px">
     <Column ColumnSize="ColumnSize.Is12" Style="background-color: aliceblue">
         <Heading Size="HeadingSize.Is3">Simple RPG</Heading>
@@ -25,5 +26,5 @@
 </Row>
  
 @code {
-    private GameSession ViewModel = new GameSession();
+    
 }
