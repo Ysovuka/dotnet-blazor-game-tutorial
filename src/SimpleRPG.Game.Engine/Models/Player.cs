@@ -14,5 +14,5 @@ public class Player
 
     public int Gold { get; set; }
 
-    public ICollection<GameItem> Inventory { get; } = new List<GameItem>();
+    public Inventory Inventory { get; } = new Inventory();
 }
