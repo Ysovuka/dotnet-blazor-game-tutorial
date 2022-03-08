@@ -2,7 +2,7 @@
 
 namespace SimpleRPG.Game.Engine.ViewModels;
 
-public class GameSession
+public class GameSession : IGameSession
 {
     public Player CurrentPlayer { get; set; }
 
