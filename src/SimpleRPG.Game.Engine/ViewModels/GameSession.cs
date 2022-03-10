@@ -56,6 +56,10 @@ public class GameSession : IGameSession
         }
 
         CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(2001));
+        CurrentPlayer.LearnRecipe(RecipeFactory.GetRecipeById(1));
+        CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(3001));
+        CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(3002));
+        CurrentPlayer.Inventory.AddItem(ItemFactory.CreateGameItem(3003));
     }
 
     public void OnLocationChanged(Location newLocation)
@@ -122,6 +126,40 @@ public class GameSession : IGameSession
         CurrentPlayer.CurrentConsumable = item;
         var message = CurrentPlayer.UseCurrentConsumable(CurrentPlayer);
         AddDisplayMessage(message);
+    }
+
+    public void CraftItemUsing(Recipe recipe)
+    {
+        _ = recipe ?? throw new ArgumentNullException(nameof(recipe));
+
+        var lines = new List<string>();
+
+        if (CurrentPlayer.Inventory.HasAllTheseItems(recipe.Ingredients))
+        {
+            CurrentPlayer.Inventory.RemoveItems(recipe.Ingredients);
+
+            foreach (ItemQuantity itemQuantity in recipe.OutputItems)
+            {
+                for (int i = 0; i < itemQuantity.Quantity; i++)
+                {
+                    GameItem outputItem = ItemFactory.CreateGameItem(itemQuantity.ItemId);
+                    CurrentPlayer.Inventory.AddItem(outputItem);
+                    lines.Add($"You craft 1 {outputItem.Name}");
+                }
+            }
+
+            AddDisplayMessage("Item Creation", lines);
+        }
+        else
+        {
+            lines.Add("You do not have the required ingredients:");
+            foreach (ItemQuantity itemQuantity in recipe.Ingredients)
+            {
+                lines.Add($"  {itemQuantity.Quantity} {ItemFactory.GetItemName(itemQuantity.ItemId)}");
+            }
+
+            AddDisplayMessage("Item Creation", lines);
+        }
     }
 
     private void OnCurrentPlayerKilled(Monster currentMonster)
@@ -207,15 +245,7 @@ public class GameSession : IGameSession
                 if (CurrentPlayer.Inventory.HasAllTheseItems(quest.ItemsToComplete))
                 {
                     // Remove the quest completion items from the player's inventory
-                    foreach (ItemQuantity itemQuantity in quest.ItemsToComplete)
-                    {
-                        for (int i = 0; i < itemQuantity.Quantity; i++)
-                        {
-                            CurrentPlayer.Inventory.RemoveItem(
-                                CurrentPlayer.Inventory.Items.First(
-                                    item => item.ItemTypeID == itemQuantity.ItemId));
-                        }
-                    }
+                    CurrentPlayer.Inventory.RemoveItems(quest.ItemsToComplete);
 
                     // give the player the quest rewards
                     var messageLines = new List<string>();

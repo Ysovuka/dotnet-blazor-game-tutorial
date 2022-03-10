@@ -17,6 +17,9 @@ internal static class ItemFactory
         BuildWeapon(1503, "Spider fangs", 0, "1d4");
 
         BuildHealingItem(2001, "Granola bar", 5, 2);
+        BuildMiscellaneousItem(3001, "Oats", 1);
+        BuildMiscellaneousItem(3002, "Honey", 2);
+        BuildMiscellaneousItem(3003, "Raisins", 2);
 
         BuildMiscellaneousItem(9001, "Snake fang", 1);
         BuildMiscellaneousItem(9002, "Snakeskin", 2);
@@ -31,6 +34,11 @@ internal static class ItemFactory
         var standardItem = _standardGameItems.First(i => i.ItemTypeID == itemTypeID);
 
         return standardItem.Clone();
+    }
+
+    public static string GetItemName(int itemTypeId)
+    {
+        return _standardGameItems.FirstOrDefault(i => i.ItemTypeID == itemTypeId)?.Name ?? "";
     }
 
     private static void BuildMiscellaneousItem(int id, string name, int price) =>

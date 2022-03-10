@@ -8,6 +8,8 @@ public class Player : LivingEntity
 
     public IList<QuestStatus> Quests { get; set; } = new List<QuestStatus>();
 
+    public IList<Recipe> Recipes { get; set; } = new List<Recipe>();
+
     public void AddExperience(int experiencePoints)
     {
         if (experiencePoints > 0)
@@ -26,6 +28,14 @@ public class Player : LivingEntity
         if (Level != originalLevel)
         {
             MaximumHitPoints = Level * 10;
+        }
+    }
+
+    public void LearnRecipe(Recipe recipe)
+    {
+        if (!Recipes.Any(r => r.Id == recipe.Id))
+        {
+            Recipes.Add(recipe);
         }
     }
 }

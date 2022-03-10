@@ -23,4 +23,6 @@ public interface IGameSession
     void AttackCurrentMonster(GameItem? currentWeapon);
 
     void ConsumeCurrentItem(GameItem? item);
+
+    void CraftItemUsing(Recipe recipe);
 }

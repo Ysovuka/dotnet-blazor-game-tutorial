@@ -78,6 +78,19 @@ public class Inventory
         }
     }
 
+    public void RemoveItems(IList<ItemQuantity> itemQuantities)
+    {
+        _ = itemQuantities ?? throw new ArgumentNullException(nameof(itemQuantities));
+
+        foreach (ItemQuantity itemQuantity in itemQuantities)
+        {
+            for (int i = 0; i < itemQuantity.Quantity; i++)
+            {
+                RemoveItem(Items.First(item => item.ItemTypeID == itemQuantity.ItemId));
+            }
+        }
+    }
+
     public bool HasAllTheseItems(IEnumerable<ItemQuantity> items)
     {
         return items.All(item => Items.Count(i => i.ItemTypeID == item.ItemId) >= item.Quantity);
