@@ -31,4 +31,25 @@ public class Recipe
             OutputItems.Add(new ItemQuantity { ItemId = itemId, Quantity = quantity });
         }
     }
+
+    public DisplayMessage ToDisplayMessage()
+    {
+        var messageLines = new List<string>
+            {
+                "Ingredients:"
+            };
+
+        foreach (ItemQuantity q in Ingredients)
+        {
+            messageLines.Add(q.QuantityItemDescription);
+        }
+
+        messageLines.Add("Creates:");
+        foreach (ItemQuantity itemQuantity in OutputItems)
+        {
+            messageLines.Add(itemQuantity.QuantityItemDescription);
+        }
+
+        return new DisplayMessage($"Recipe Added - {Name}", messageLines);
+    }
 }

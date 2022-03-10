@@ -27,4 +27,6 @@ public interface IGameSession
     void CraftItemUsing(Recipe recipe);
 
     void ProcessKeyPress(KeyProcessingEventArgs args);
+
+    void AddDisplayMessage(DisplayMessage message);
 }

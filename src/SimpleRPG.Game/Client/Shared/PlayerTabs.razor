@@ -39,7 +39,9 @@
                         @foreach (var quest in Player.Quests)
                         {
                         <TableRow>
-                            <TableRowCell>@quest.PlayerQuest.Name</TableRowCell>
+                            <TableRowCell id="quest-name-cell" Style="cursor:pointer" Clicked="() => OnQuestClicked(quest.PlayerQuest)">
+                                @quest.PlayerQuest.Name
+                            </TableRowCell>
                             <TableRowCell>@(quest.IsCompleted ? "Yes" : "No")</TableRowCell>
                         </TableRow>
                         }
@@ -59,7 +61,9 @@
                         @foreach (var recipe in Player.Recipes)
                         {
                         <TableRow>
-                            <TableRowCell>@recipe.Name</TableRowCell>
+                            <TableRowCell id="recipe-name-cell" Style="cursor: pointer" Clicked="() => OnRecipeClicked(recipe)">
+                                @recipe.Name
+                            </TableRowCell>
                             <TableRowCell>
                                 <Button id="craft-item-btn" Size="Size.Small" Color="Color.Secondary"
                                         Outline="true" Clicked="() => CraftItemClicked.InvokeAsync(recipe)">
@@ -80,13 +84,21 @@
  
     [Parameter]
     public Player Player { get; set; } = new Player();
-
+ 
     [Parameter]
     public EventCallback<Recipe> CraftItemClicked { get; set; }
  
+    [Parameter]
+    public EventCallback<DisplayMessage> DisplayMessageCreated { get; set; }
  
     public void OnSelectedTabChanged(string newTab)
     {
         _selectedTab = newTab;
     }
+ 
+    private void OnQuestClicked(Quest quest) =>
+        DisplayMessageCreated.InvokeAsync(quest.ToDisplayMessage());
+ 
+    private void OnRecipeClicked(Recipe recipe) =>
+        DisplayMessageCreated.InvokeAsync(recipe.ToDisplayMessage());
 }
