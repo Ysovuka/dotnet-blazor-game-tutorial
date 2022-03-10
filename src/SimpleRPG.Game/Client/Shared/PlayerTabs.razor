@@ -83,7 +83,7 @@
     private string _selectedTab = "inventory";
  
     [Parameter]
-    public Player Player { get; set; } = new Player();
+    public Player Player { get; set; } = Player.Empty;
  
     [Parameter]
     public EventCallback<Recipe> CraftItemClicked { get; set; }

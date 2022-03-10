@@ -40,13 +40,13 @@ public class Inventory
 
         if (item.IsUnique)
         {
-            _backingGroupedInventory.Add(new GroupedInventoryItem { Item = item, Quantity = 1 });
+            _backingGroupedInventory.Add(new GroupedInventoryItem(item, 1));
         }
         else
         {
             if (_backingGroupedInventory.All(gi => gi.Item.ItemTypeID != item.ItemTypeID))
             {
-                _backingGroupedInventory.Add(new GroupedInventoryItem { Item = item, Quantity = 0 });
+                _backingGroupedInventory.Add(new GroupedInventoryItem(item, 0));
             }
 
             _backingGroupedInventory.First(gi => gi.Item.ItemTypeID == item.ItemTypeID).Quantity++;

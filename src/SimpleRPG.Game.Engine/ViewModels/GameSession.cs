@@ -41,18 +41,8 @@ public class GameSession : IGameSession
             () => GetMonsterAtCurrentLocation(),  // Gets another monster
             _diceService);
 
-        CurrentPlayer = new Player
-        {
-            Name = "DarthPedro",
-            CharacterClass = "Fighter",
-            CurrentHitPoints = 10,
-            MaximumHitPoints = 10,
-            Gold = 1000,
-            Level = 1,
-            Dexterity = _diceService.Roll("3d6").Value,
-            Strength = _diceService.Roll("3d6").Value,
-            ArmorClass = 10
-        };
+        CurrentPlayer = new Player("DarthPedro", "Fighter", _diceService.Roll("3d6").Value,
+                                   _diceService.Roll("3d6").Value, 10, 10, 10);
 
         _currentWorld = WorldFactory.CreateWorld();
 

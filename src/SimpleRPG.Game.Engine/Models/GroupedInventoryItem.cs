@@ -2,7 +2,12 @@
 
 public class GroupedInventoryItem
 {
-    public GameItem Item { get; set; } = GameItem.Empty;
+    public GroupedInventoryItem(GameItem item, int quantity)
+    {
+        Item = item;
+        Quantity = quantity;
+    }
+    public GameItem Item { get; }
 
     public int Quantity { get; set; }
 }

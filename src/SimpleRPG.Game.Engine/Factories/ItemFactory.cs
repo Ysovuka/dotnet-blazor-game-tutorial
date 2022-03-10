@@ -1,32 +1,18 @@
 ﻿using SimpleRPG.Game.Engine.Actions;
+using SimpleRPG.Game.Engine.Factories.DTO;
+using SimpleRPG.Game.Engine.Helpers;
 using SimpleRPG.Game.Engine.Models;
 
 namespace SimpleRPG.Game.Engine.Factories;
 
 internal static class ItemFactory
 {
+    private const string _resourceNamespace = "SimpleRPG.Game.Engine.Data.items.json";
     private static readonly List<GameItem> _standardGameItems = new List<GameItem>();
 
     static ItemFactory()
     {
-        BuildWeapon(1001, "Pointy Stick", 1, "1d2");
-        BuildWeapon(1002, "Rusty Sword", 5, "1d3");
-
-        BuildWeapon(1501, "Snake fangs", 0, "1d2");
-        BuildWeapon(1502, "Rat claws", 0, "1d2");
-        BuildWeapon(1503, "Spider fangs", 0, "1d4");
-
-        BuildHealingItem(2001, "Granola bar", 5, 2);
-        BuildMiscellaneousItem(3001, "Oats", 1);
-        BuildMiscellaneousItem(3002, "Honey", 2);
-        BuildMiscellaneousItem(3003, "Raisins", 2);
-
-        BuildMiscellaneousItem(9001, "Snake fang", 1);
-        BuildMiscellaneousItem(9002, "Snakeskin", 2);
-        BuildMiscellaneousItem(9003, "Rat tail", 1);
-        BuildMiscellaneousItem(9004, "Rat fur", 2);
-        BuildMiscellaneousItem(9005, "Spider fang", 1);
-        BuildMiscellaneousItem(9006, "Spider silk", 2);
+        Load();
     }
 
     public static GameItem CreateGameItem(int itemTypeID)
@@ -41,21 +27,40 @@ internal static class ItemFactory
         return _standardGameItems.FirstOrDefault(i => i.ItemTypeID == itemTypeId)?.Name ?? "";
     }
 
+    private static void Load()
+    {
+        var templates = JsonSerializationHelper.DeserializeResourceStream<ItemTemplate>(_resourceNamespace);
+        foreach (var tmp in templates)
+        {
+            switch (tmp.Category)
+            {
+                case GameItem.ItemCategory.Weapon:
+                    BuildWeapon(tmp.Id, tmp.Name, tmp.Price, tmp.Damage);
+                    break;
+                case GameItem.ItemCategory.Consumable:
+                    BuildHealingItem(tmp.Id, tmp.Name, tmp.Price, tmp.Heals);
+                    break;
+                default:
+                    BuildMiscellaneousItem(tmp.Id, tmp.Name, tmp.Price);
+                    break;
+            }
+        }
+    }
+
     private static void BuildMiscellaneousItem(int id, string name, int price) =>
         _standardGameItems.Add(new GameItem(id, GameItem.ItemCategory.Miscellaneous, name, price));
 
     private static void BuildWeapon(int id, string name, int price, string damageDice)
     {
         var weapon = new GameItem(id, GameItem.ItemCategory.Weapon, name, price, true);
-        weapon.Action = new Attack(weapon, damageDice);
-
+        weapon.SetAction(new Attack(weapon, damageDice));
         _standardGameItems.Add(weapon);
     }
 
-    private static void BuildHealingItem(int id, string name, int price, int hitPointsToHeal)
+    private static void BuildHealingItem(int id, string name, int price, int healPoints)
     {
-        GameItem item = new GameItem(id, GameItem.ItemCategory.Consumable, name, price);
-        item.Action = new Heal(item, hitPointsToHeal);
+        GameItem item = new(id, GameItem.ItemCategory.Consumable, name, price);
+        item.SetAction(new Heal(item, healPoints));
         _standardGameItems.Add(item);
     }
 }
