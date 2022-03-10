@@ -70,4 +70,9 @@ public class Inventory
             }
         }
     }
+
+    public bool HasAllTheseItems(IEnumerable<ItemQuantity> items)
+    {
+        return items.All(item => Items.Count(i => i.ItemTypeID == item.ItemId) >= item.Quantity);
+    }
 }

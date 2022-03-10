@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 using SimpleRPG.Game.Client;
 using SimpleRPG.Game.Engine;
+using SimpleRPG.Game.Engine.Services;
 using SimpleRPG.Game.Engine.ViewModels;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -30,5 +31,7 @@ void ConfigureServices(IServiceCollection services)
         BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
     });
 
+    services.AddSingleton<IDiceService>(DiceService.Instance);
     services.AddSingleton<IGameSession, GameSession>();
+    services.AddTransient<TraderViewModel>();
 }
