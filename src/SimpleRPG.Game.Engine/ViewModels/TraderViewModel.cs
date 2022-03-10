@@ -20,7 +20,7 @@ public class TraderViewModel
 
         if (Player != null && Trader != null)
         {
-            Player.Gold += item.Price;
+            Player.ReceiveGold(item.Price);
             Trader.Inventory.AddItem(item);
             Player.Inventory.RemoveItem(item);
 
@@ -37,7 +37,7 @@ public class TraderViewModel
             ErrorMessage = string.Empty;
             if (Player.Gold >= item.Price)
             {
-                Player.Gold -= item.Price;
+                Player.SpendGold(item.Price);
                 Trader.Inventory.RemoveItem(item);
                 Player.Inventory.AddItem(item);
 
