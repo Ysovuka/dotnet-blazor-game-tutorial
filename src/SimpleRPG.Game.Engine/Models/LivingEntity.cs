@@ -8,6 +8,12 @@ public abstract class LivingEntity
 
     public int MaximumHitPoints { get; set; }
 
+    public int Dexterity { get; set; } = 10;
+
+    public int Strength { get; set; } = 10;
+
+    public int ArmorClass { get; set; } = 10;
+
     public int Gold { get; set; }
 
     public int Level { get; set; }

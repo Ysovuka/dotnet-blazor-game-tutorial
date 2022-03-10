@@ -1,35 +1,43 @@
 ﻿<Table Borderless="true" Narrow="true">
-            <TableHeader>
-                <TableHeaderCell RowSpan="2">Player Data</TableHeaderCell>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                    <TableRowCell>Name:</TableRowCell>
-                    <TableRowCell>@Player.Name</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Class:</TableRowCell>
-                    <TableRowCell>@Player.CharacterClass</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Hit points:</TableRowCell>
-                    <TableRowCell>@Player.CurrentHitPoints / @Player.MaximumHitPoints</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Gold:</TableRowCell>
-                    <TableRowCell>@Player.Gold</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>XP:</TableRowCell>
-                    <TableRowCell>@Player.ExperiencePoints</TableRowCell>
-                </TableRow>
-                <TableRow>
-                    <TableRowCell>Level:</TableRowCell>
-                    <TableRowCell>@Player.Level</TableRowCell>
-                </TableRow>
-            </TableBody>
-        </Table>
-
+    <TableHeader>
+        <TableHeaderCell RowSpan="2">Player Data</TableHeaderCell>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableRowCell>Name:</TableRowCell>
+            <TableRowCell>@Player.Name</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Class:</TableRowCell>
+            <TableRowCell>@Player.CharacterClass</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Strength:</TableRowCell>
+            <TableRowCell>@Player.Strength</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Dexterity:</TableRowCell>
+            <TableRowCell>@Player.Dexterity</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Hit points:</TableRowCell>
+            <TableRowCell>@Player.CurrentHitPoints</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Gold:</TableRowCell>
+            <TableRowCell>@Player.Gold</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>XP:</TableRowCell>
+            <TableRowCell>@Player.ExperiencePoints</TableRowCell>
+        </TableRow>
+        <TableRow>
+            <TableRowCell>Level:</TableRowCell>
+            <TableRowCell>@Player.Level</TableRowCell>
+        </TableRow>
+    </TableBody>
+</Table>
+ 
 @code {
     [Parameter]
     public Player Player { get; set; } = new Player();

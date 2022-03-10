@@ -4,14 +4,22 @@ namespace SimpleRPG.Game.Engine.Models;
 
 public class Battle
 {
+    public enum Combatant
+    {
+        Player,
+        Opponent
+    }
+
     private readonly DisplayMessageBroker _messageBroker = DisplayMessageBroker.Instance;
     private readonly Action _onPlayerKilled;
     private readonly Action _onOpponentKilled;
+    private readonly IDiceService _diceService;
 
-    public Battle(Action onPlayerKilled, Action onOpponenetKilled)
+    public Battle(Action onPlayerKilled, Action onOpponenetKilled, IDiceService diceService)
     {
         _onPlayerKilled = onPlayerKilled;
         _onOpponentKilled = onOpponenetKilled;
+        _diceService = diceService;
     }
 
     public void Attack(Player player, Monster opponent)
@@ -19,16 +27,43 @@ public class Battle
         _ = player ?? throw new ArgumentNullException(nameof(player));
         _ = opponent ?? throw new ArgumentNullException(nameof(opponent));
 
-        AttackOpponent(player, opponent);
+        if (FirstAttacker(player, opponent) == Combatant.Player)
+        {
+            bool battleContinues = AttackOpponent(player, opponent);
+            if (battleContinues)
+            {
+                // if the monster is still alive, it attacks the player.
+                AttackPlayer(player, opponent);
+            }
+        }
+        else
+        {
+            bool battleContinues = AttackPlayer(player, opponent);
+            if (battleContinues)
+            {
+                // if the player is still alive, attack the monster.
+                AttackOpponent(player, opponent);
+            }
+        }
     }
 
-    private void AttackOpponent(Player player, Monster opponent)
+    private Combatant FirstAttacker(Player player, Monster opponent)
+    {
+        int playerBonus = AbilityCalculator.CalculateBonus(player.Dexterity);
+        int oppBonus = AbilityCalculator.CalculateBonus(opponent.Dexterity);
+        int playerInit = _diceService.Roll(20.ToString()).Value + playerBonus;
+        int oppInit = _diceService.Roll(20.ToString()).Value + oppBonus;
+
+        return (playerInit >= oppInit) ? Combatant.Player : Combatant.Opponent;
+    }
+
+    private bool AttackOpponent(Player player, Monster opponent)
     {
         if (player.CurrentWeapon == null)
         {
             _messageBroker.RaiseMessage(
                 new DisplayMessage("Combat Warning", "You must select a weapon, to attack."));
-            return;
+            return false;
         }
 
         // player acts monster with weapon
@@ -39,15 +74,13 @@ public class Battle
         if (opponent.IsDead)
         {
             OnOpponentKilled(player, opponent);
+            return false;
         }
-        else
-        {
-            // if the monster is still alive, it attacks the player.
-            AttackPlayer(player, opponent);
-        }
+
+        return true;
     }
 
-    private void AttackPlayer(Player player, Monster opponent)
+    private bool AttackPlayer(Player player, Monster opponent)
     {
         // now the monster attacks the player
         var message = opponent.UseCurrentWeaponOn(player);
@@ -57,7 +90,10 @@ public class Battle
         if (player.IsDead)
         {
             OnPlayerKilled(player, opponent);
+            return false;
         }
+
+        return true;
     }
 
     private void OnPlayerKilled(Player player, Monster opponent)

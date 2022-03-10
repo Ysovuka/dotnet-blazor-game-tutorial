@@ -20,6 +20,9 @@ internal static class MonsterFactory
                     MaximumHitPoints = 4,
                     RewardExperiencePoints = 5,
                     Gold = 1,
+                    Dexterity = 15,
+                    Strength = 12,
+                    ArmorClass = 10
                 };
 
                 snake.CurrentWeapon = ItemFactory.CreateGameItem(1501);
@@ -36,6 +39,9 @@ internal static class MonsterFactory
                     MaximumHitPoints = 5,
                     RewardExperiencePoints = 5,
                     Gold = 1,
+                    Dexterity = 8,
+                    Strength = 10,
+                    ArmorClass = 10
                 };
 
                 rat.CurrentWeapon = ItemFactory.CreateGameItem(1502);
@@ -52,6 +58,9 @@ internal static class MonsterFactory
                     MaximumHitPoints = 10,
                     RewardExperiencePoints = 10,
                     Gold = 3,
+                    Dexterity = 12,
+                    Strength = 15,
+                    ArmorClass = 12
                 };
 
                 giantSpider.CurrentWeapon = ItemFactory.CreateGameItem(1503);
