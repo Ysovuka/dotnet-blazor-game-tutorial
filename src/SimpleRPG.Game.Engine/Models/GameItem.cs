@@ -7,7 +7,8 @@ public class GameItem
     public enum ItemCategory
     {
         Miscellaneous,
-        Weapon
+        Weapon,
+        Consumable
     }
 
     public static readonly GameItem Empty = new GameItem();
