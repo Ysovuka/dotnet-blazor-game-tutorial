@@ -9,7 +9,7 @@ namespace SimpleRPG.Game.Engine.Models;
 public class Weapon : GameItem
 {
     public Weapon(int itemTypeID, string name, int price, string damageRoll)
-        : base(itemTypeID, name, price, true)
+        : base(itemTypeID, ItemCategory.Weapon, name, price, true)
     {
         DamageRoll = damageRoll;
     }

@@ -14,6 +14,10 @@ public abstract class LivingEntity
 
     public Inventory Inventory { get; } = new Inventory();
 
+    public GameItem? CurrentWeapon { get; set; }
+
+    public bool HasCurrentWeapon => CurrentWeapon != null;
+
     public bool IsDead => CurrentHitPoints <= 0;
 
     public void TakeDamage(int hitPointsOfDamage)
@@ -22,6 +26,16 @@ public abstract class LivingEntity
         {
             CurrentHitPoints -= hitPointsOfDamage;
         }
+    }
+
+    public DisplayMessage UseCurrentWeaponOn(LivingEntity target)
+    {
+        if (CurrentWeapon is null)
+        {
+            throw new InvalidOperationException("CurrentWeapon cannot be null.");
+        }
+
+        return CurrentWeapon.PerformAction(this, target);
     }
 
     public void Heal(int hitPointsToHeal)
