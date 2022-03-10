@@ -8,7 +8,13 @@ public class DisplayMessage
         Messages = messages;
     }
 
-    public string Title { get; } = string.Empty;
+    public DisplayMessage(string title, string message)
+    {
+        Title = title;
+        Messages = new List<string> { message };
+    }
+
+    public string Title { get; }
 
     public IList<string> Messages { get; }
 }
