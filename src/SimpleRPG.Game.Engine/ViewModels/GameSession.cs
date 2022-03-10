@@ -9,6 +9,7 @@ public class GameSession : IGameSession
     private readonly World _currentWorld;
     private readonly IDiceService _diceService;
     private readonly int _maximumMessagesCount = 100;
+    private readonly Dictionary<string, Action> _userInputActions = new Dictionary<string, Action>();
 
     public Player CurrentPlayer { get; private set; }
 
@@ -33,6 +34,7 @@ public class GameSession : IGameSession
     public GameSession(IDiceService? diceService = null)
     {
         _diceService = diceService ?? DiceService.Instance;
+        InitializeUserInputActions();
 
         CurrentPlayer = new Player
         {
@@ -162,6 +164,17 @@ public class GameSession : IGameSession
         }
     }
 
+    public void ProcessKeyPress(KeyProcessingEventArgs args)
+    {
+        _ = args ?? throw new ArgumentNullException(nameof(args));
+
+        var key = args.Key.ToUpper();
+        if (_userInputActions.ContainsKey(key))
+        {
+            _userInputActions[key].Invoke();
+        }
+    }
+
     private void OnCurrentPlayerKilled(Monster currentMonster)
     {
         AddDisplayMessage("Player Defeated", $"The {currentMonster.Name} killed you.");
@@ -270,6 +283,18 @@ public class GameSession : IGameSession
                 }
             }
         }
+    }
+
+    private void InitializeUserInputActions()
+    {
+        _userInputActions.Add("W", () => Movement.MoveNorth());
+        _userInputActions.Add("A", () => Movement.MoveWest());
+        _userInputActions.Add("S", () => Movement.MoveSouth());
+        _userInputActions.Add("D", () => Movement.MoveEast());
+        _userInputActions.Add("ARROWUP", () => Movement.MoveNorth());
+        _userInputActions.Add("ARROWLEFT", () => Movement.MoveWest());
+        _userInputActions.Add("ARROWDOWN", () => Movement.MoveSouth());
+        _userInputActions.Add("ARROWRIGHT", () => Movement.MoveEast());
     }
 
     private void AddDisplayMessage(string title, string message) =>

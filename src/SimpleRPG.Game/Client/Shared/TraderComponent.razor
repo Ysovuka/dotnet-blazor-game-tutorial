@@ -5,7 +5,7 @@
 <Row Margin="Margin.Is2.OnY">
     <Column Class="text-center">
         <Button id="show-trader-btn" Color="Color.Secondary" Margin="Margin.Is1"
-                Clicked="@modal.ShowModal">
+                Clicked="@modal.ShowModal" accesskey="t">
             Trader
         </Button>
     </Column>
@@ -91,7 +91,7 @@
 }
  
 @code {
-    private ModalHelper modal = new ModalHelper();
+    private SimpleRPG.Game.Client.ModalHelper modal = new Client.ModalHelper();
  
     [Parameter]
     public Trader? Trader { get; set; } = null;

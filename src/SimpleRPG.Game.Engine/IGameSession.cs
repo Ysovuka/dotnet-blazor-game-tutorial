@@ -25,4 +25,6 @@ public interface IGameSession
     void ConsumeCurrentItem(GameItem? item);
 
     void CraftItemUsing(Recipe recipe);
+
+    void ProcessKeyPress(KeyProcessingEventArgs args);
 }
