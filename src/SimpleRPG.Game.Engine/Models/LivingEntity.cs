@@ -22,7 +22,9 @@ public abstract class LivingEntity
 
     public bool HasCurrentConsumable => CurrentConsumable != null;
 
-    public bool IsDead => CurrentHitPoints <= 0;
+    public bool IsAlive => CurrentHitPoints > 0;
+
+    public bool IsDead => !IsAlive;
 
     public void TakeDamage(int hitPointsOfDamage)
     {
