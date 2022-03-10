@@ -1,35 +1,35 @@
-﻿using SimpleRPG.Game.Engine.Models;
+﻿using SimpleRPG.Game.Engine.Factories.DTO;
+using SimpleRPG.Game.Engine.Helpers;
+using SimpleRPG.Game.Engine.Models;
 
 namespace SimpleRPG.Game.Engine.Factories;
 
 internal static class QuestFactory
 {
-    private static readonly IList<Quest> _quests = new List<Quest>();
-
-    static QuestFactory()
-    {
-        // Declare the items need to complete the quest, and its reward items
-        List<ItemQuantity> itemsToComplete = new List<ItemQuantity>();
-        List<ItemQuantity> rewardItems = new List<ItemQuantity>();
-
-        itemsToComplete.Add(new ItemQuantity { ItemId = 9001, Quantity = 5 });
-        rewardItems.Add(new ItemQuantity { ItemId = 1002, Quantity = 1 });
-
-        // Create the quest
-        _quests.Add(new Quest
-        {
-            Id = 1,
-            Name = "Clear the herb garden",
-            Description = "Defeat the snakes in the Herbalist's garden",
-            ItemsToComplete = itemsToComplete,
-            RewardGold = 25,
-            RewardExperiencePoints = 10,
-            RewardItems = rewardItems
-        });
-    }
+    private const string _resourceNamespace = "SimpleRPG.Game.Engine.Data.quests.json";
+    private static readonly IList<QuestTemplate> _questTemplates = JsonSerializationHelper.DeserializeResourceStream<QuestTemplate>(_resourceNamespace);
 
     public static Quest GetQuestById(int id)
     {
-        return _quests.First(quest => quest.Id == id);
+        // first find the quest template by its id.
+        var template = _questTemplates.First(p => p.Id == id);
+
+        // then create an instance of quest from that template.
+        var quest = new Quest(template.Id, template.Name, template.Description,
+                              template.RewardGold, template.RewardXP);
+
+        // next add each pre-requisite for the quest.
+        foreach (var req in template.Requirements)
+        {
+            quest.ItemsToComplete.Add(new ItemQuantity { ItemId = req.Id, Quantity = req.Qty });
+        }
+
+        // finally add each reward item given from the quest.
+        foreach (var item in template.RewardItems)
+        {
+            quest.RewardItems.Add(new ItemQuantity { ItemId = item.Id, Quantity = item.Qty });
+        }
+
+        return quest;
     }
 }

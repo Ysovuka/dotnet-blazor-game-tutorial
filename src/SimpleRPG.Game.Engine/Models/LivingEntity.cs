@@ -2,21 +2,36 @@
 
 public abstract class LivingEntity
 {
-    public string Name { get; set; } = string.Empty;
+    public LivingEntity(int id, string name, int dex, int str, int ac,
+                        int currentHitPoints, int maximumHitPoints, int gold)
+    {
+        Id = id;
+        Name = name;
+        Dexterity = dex;
+        Strength = str;
+        ArmorClass = ac;
+        CurrentHitPoints = currentHitPoints;
+        MaximumHitPoints = maximumHitPoints;
+        Gold = gold;
+    }
 
-    public int CurrentHitPoints { get; set; }
+    public int Id { get; }
 
-    public int MaximumHitPoints { get; set; }
+    public string Name { get; } = string.Empty;
 
-    public int Dexterity { get; set; } = 10;
+    public int CurrentHitPoints { get; private set; }
 
-    public int Strength { get; set; } = 10;
+    public int MaximumHitPoints { get; protected set; }
 
-    public int ArmorClass { get; set; } = 10;
+    public int Dexterity { get; } = 10;
 
-    public int Gold { get; set; }
+    public int Strength { get; } = 10;
 
-    public int Level { get; set; }
+    public int ArmorClass { get; } = 10;
+
+    public int Gold { get; private set; }
+
+    public int Level { get; protected set; } = 1;
 
     public Inventory Inventory { get; } = new Inventory();
 

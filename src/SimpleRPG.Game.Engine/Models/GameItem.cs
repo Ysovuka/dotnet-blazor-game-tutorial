@@ -11,8 +11,6 @@ public class GameItem
         Consumable
     }
 
-    public static readonly GameItem Empty = new GameItem();
-
     public GameItem(int itemTypeID, ItemCategory category, string name, int price, bool isUnique = false, IAction? action = null)
     {
         ItemTypeID = itemTypeID;
@@ -23,26 +21,27 @@ public class GameItem
         Action = action;
     }
 
-    public GameItem()
-    {
-    }
+    public int ItemTypeID { get; }
 
-    public int ItemTypeID { get; set; }
+    public ItemCategory Category { get; }
 
-    public ItemCategory Category { get; set; }
+    public string Name { get; }
 
-    public string Name { get; set; } = string.Empty;
+    public int Price { get; }
 
-    public int Price { get; set; }
+    public bool IsUnique { get; }
 
-    public bool IsUnique { get; set; }
-
-    public IAction? Action { get; set; }
+    public IAction? Action { get; private set; }
 
     public virtual GameItem Clone() =>
         new GameItem(ItemTypeID, Category, Name, Price, IsUnique, Action);
 
-    public DisplayMessage PerformAction(LivingEntity actor, LivingEntity target)
+    internal void SetAction(IAction? action)
+    {
+        this.Action = action;
+    }
+
+    internal DisplayMessage PerformAction(LivingEntity actor, LivingEntity target)
     {
         if (Action is null)
         {

@@ -2,13 +2,22 @@
 
 public class Player : LivingEntity
 {
-    public string CharacterClass { get; set; } = string.Empty;
+    public static readonly Player Empty = new Player(string.Empty, string.Empty, 10, 10, 10, 10, 0);
 
-    public int ExperiencePoints { get; set; }
+    public Player(string name, string charClass, int dex, int str, int ac,
+                  int maximumHitPoints, int gold)
+        : base(1, name, dex, str, ac, maximumHitPoints, maximumHitPoints, gold)
+    {
+        CharacterClass = charClass;
+    }
 
-    public IList<QuestStatus> Quests { get; set; } = new List<QuestStatus>();
+    public string CharacterClass { get; } = string.Empty;
 
-    public IList<Recipe> Recipes { get; set; } = new List<Recipe>();
+    public int ExperiencePoints { get; private set; }
+
+    public IList<QuestStatus> Quests { get; } = new List<QuestStatus>();
+
+    public IList<Recipe> Recipes { get; } = new List<Recipe>();
 
     public void AddExperience(int experiencePoints)
     {

@@ -7,6 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\items.json" />
+    <None Remove="Data\locations.json" />
+    <None Remove="Data\monster.json" />
+    <None Remove="Data\quests.json" />
+    <None Remove="Data\recipes.json" />
+    <None Remove="Data\traders.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\items.json" />
+    <EmbeddedResource Include="Data\locations.json" />
+    <EmbeddedResource Include="Data\monster.json" />
+    <EmbeddedResource Include="Data\quests.json" />
+    <EmbeddedResource Include="Data\recipes.json" />
+    <EmbeddedResource Include="Data\traders.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="D20Tek.DiceNotation.Standard" Version="3.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.2" />
   </ItemGroup>

@@ -2,17 +2,22 @@
 
 public class World
 {
-    private readonly IEnumerable<Location> _locations;
+    private readonly IList<Location> _locations;
 
-    public World(IEnumerable<Location> locations)
+    public World(IEnumerable<Location>? locs = null)
     {
-        _locations = locations ?? new List<Location>();
+        _locations = locs is null ? new List<Location>() : locs.ToList();
     }
 
-    public Location LocationAt(int x, int y)
+    internal void AddLocation(Location location)
     {
-        return _locations.FirstOrDefault(p => p.XCoordinate == x && p.YCoordinate == y) ??
-            throw new ArgumentOutOfRangeException("Coordinates", "Provided coordinates could not be found in game world.");
+        _locations.Add(location);
+    }
+
+    public Location LocationAt(int xCoordinate, int yCoordinate)
+    {
+        var loc = _locations.FirstOrDefault(p => p.XCoordinate == xCoordinate && p.YCoordinate == yCoordinate);
+        return loc ?? throw new ArgumentOutOfRangeException("Coordinates", "Provided coordinates could not be found in game world.");
     }
 
     public bool HasLocationAt(int xCoordinate, int yCoordinate)
