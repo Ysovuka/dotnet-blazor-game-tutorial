@@ -29,6 +29,9 @@ public class Inventory
     public IList<GameItem> Weapons =>
         Items.Where(i => i.Category == GameItem.ItemCategory.Weapon).ToList();
 
+    public List<GameItem> Consumables =>
+        Items.Where(i => i.Category == GameItem.ItemCategory.Consumable).ToList();
+
     public void AddItem(GameItem item)
     {
         _ = item ?? throw new ArgumentNullException(nameof(item));

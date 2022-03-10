@@ -18,6 +18,10 @@ public abstract class LivingEntity
 
     public bool HasCurrentWeapon => CurrentWeapon != null;
 
+    public GameItem? CurrentConsumable { get; set; }
+
+    public bool HasCurrentConsumable => CurrentConsumable != null;
+
     public bool IsDead => CurrentHitPoints <= 0;
 
     public void TakeDamage(int hitPointsOfDamage)
@@ -36,6 +40,17 @@ public abstract class LivingEntity
         }
 
         return CurrentWeapon.PerformAction(this, target);
+    }
+
+    public DisplayMessage UseCurrentConsumable(LivingEntity target)
+    {
+        if (CurrentConsumable is null)
+        {
+            throw new InvalidOperationException("CurrentConsumable cannot be null.");
+        }
+
+        Inventory.RemoveItem(CurrentConsumable);
+        return CurrentConsumable.PerformAction(this, target);
     }
 
     public void Heal(int hitPointsToHeal)

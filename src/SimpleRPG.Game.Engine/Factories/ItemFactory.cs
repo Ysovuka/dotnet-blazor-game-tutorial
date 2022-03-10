@@ -16,6 +16,8 @@ internal static class ItemFactory
         BuildWeapon(1502, "Rat claws", 0, "1d2");
         BuildWeapon(1503, "Spider fangs", 0, "1d4");
 
+        BuildHealingItem(2001, "Granola bar", 5, 2);
+
         BuildMiscellaneousItem(9001, "Snake fang", 1);
         BuildMiscellaneousItem(9002, "Snakeskin", 2);
         BuildMiscellaneousItem(9003, "Rat tail", 1);
@@ -31,10 +33,8 @@ internal static class ItemFactory
         return standardItem.Clone();
     }
 
-    private static void BuildMiscellaneousItem(int id, string name, int price)
-    {
+    private static void BuildMiscellaneousItem(int id, string name, int price) =>
         _standardGameItems.Add(new GameItem(id, GameItem.ItemCategory.Miscellaneous, name, price));
-    }
 
     private static void BuildWeapon(int id, string name, int price, string damageDice)
     {
@@ -42,5 +42,12 @@ internal static class ItemFactory
         weapon.Action = new Attack(weapon, damageDice);
 
         _standardGameItems.Add(weapon);
+    }
+
+    private static void BuildHealingItem(int id, string name, int price, int hitPointsToHeal)
+    {
+        GameItem item = new GameItem(id, GameItem.ItemCategory.Consumable, name, price);
+        item.Action = new Heal(item, hitPointsToHeal);
+        _standardGameItems.Add(item);
     }
 }
