@@ -74,6 +74,7 @@ internal static class WorldFactory
                     Name = "Herbalist's Hut",
                     Description = "You see a small hut, with plants drying from the roof.",
                     ImageName = "/images/locations/HerbalistsHut.png",
+                    QuestsAvailableHere = new List<Quest> { QuestFactory.GetQuestById(1) },
                     TraderHere = TraderFactory.GetTraderById(103)
                 },
                 new Location

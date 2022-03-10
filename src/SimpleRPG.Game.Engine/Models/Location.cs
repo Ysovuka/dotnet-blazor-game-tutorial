@@ -15,6 +15,8 @@ public class Location
 
     public string ImageName { get; set; } = string.Empty;
 
+    public IList<Quest> QuestsAvailableHere { get; set; } = new List<Quest>();
+
     public IList<MonsterEncounter> MonstersHere { get; set; } = new List<MonsterEncounter>();
 
     public Trader? TraderHere { get; set; } = null;
