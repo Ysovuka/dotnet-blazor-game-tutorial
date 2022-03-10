@@ -7,7 +7,6 @@ namespace SimpleRPG.Game.Engine.ViewModels;
 public class GameSession : IGameSession
 {
     private readonly World _currentWorld;
-    private readonly IDiceService _diceService;
     private readonly int _maximumMessagesCount = 100;
     private readonly Dictionary<string, Action> _userInputActions = new Dictionary<string, Action>();
 
@@ -31,9 +30,8 @@ public class GameSession : IGameSession
         _maximumMessagesCount = maxMessageCount;
     }
 
-    public GameSession(IDiceService? diceService = null)
+    public GameSession()
     {
-        _diceService = diceService ?? DiceService.Instance;
         InitializeUserInputActions();
 
         CurrentPlayer = new Player
@@ -210,6 +208,7 @@ public class GameSession : IGameSession
         if (CurrentMonster != null)
         {
             AddDisplayMessage("Monster Encountered:", $"You see a {CurrentMonster.Name} here!");
+            DisplayMessageBroker.Instance.RaiseMessage(new DisplayMessage("Monster Encountered2:", $"You see a {CurrentMonster.Name} here!"));
         }
     }
 
